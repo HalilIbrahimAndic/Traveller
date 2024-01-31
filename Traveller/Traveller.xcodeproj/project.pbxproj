@@ -11,6 +11,8 @@
 		A824F3DF2B64FCC700610861 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824F3DE2B64FCC700610861 /* ContentView.swift */; };
 		A824F3E12B64FCCA00610861 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A824F3E02B64FCCA00610861 /* Assets.xcassets */; };
 		A824F3E42B64FCCA00610861 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A824F3E32B64FCCA00610861 /* Preview Assets.xcassets */; };
+		A824F3EB2B6509E700610861 /* BeantownButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824F3EA2B6509E700610861 /* BeantownButtons.swift */; };
+		A824F4152B6AEF6000610861 /* ItemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A824F4142B6AEF6000610861 /* ItemInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		A824F3DE2B64FCC700610861 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A824F3E02B64FCCA00610861 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A824F3E32B64FCCA00610861 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A824F3EA2B6509E700610861 /* BeantownButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeantownButtons.swift; sourceTree = "<group>"; };
+		A824F4142B6AEF6000610861 /* ItemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 				A824F3DE2B64FCC700610861 /* ContentView.swift */,
 				A824F3E02B64FCCA00610861 /* Assets.xcassets */,
 				A824F3E22B64FCCA00610861 /* Preview Content */,
+				A824F3EA2B6509E700610861 /* BeantownButtons.swift */,
+				A824F4142B6AEF6000610861 /* ItemInfoView.swift */,
 			);
 			path = Traveller;
 			sourceTree = "<group>";
@@ -138,7 +144,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A824F3DF2B64FCC700610861 /* ContentView.swift in Sources */,
+				A824F3EB2B6509E700610861 /* BeantownButtons.swift in Sources */,
 				A824F3DD2B64FCC700610861 /* TravellerApp.swift in Sources */,
+				A824F4152B6AEF6000610861 /* ItemInfoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
