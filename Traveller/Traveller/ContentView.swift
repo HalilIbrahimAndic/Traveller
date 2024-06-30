@@ -8,9 +8,16 @@
 import SwiftUI
 import MapKit
 
-extension CLLocationCoordinate2D {
-    static let parking = CLLocationCoordinate2D(latitude: 42.354528, longitude: -71.068369)
-//    static let parking = CLLocationCoordinate2D(latitude: 39.92, longitude: 32.86)
+@MainActor class LocationHandler: ObservableObject {
+    static let shared = LocationHandler()
+    public let manager: CLLocationManager
+    
+    init() {
+        self.manager = CLLocationManager()
+        if self.manager.authorizationStatus == .notDetermined {
+            self.manager.requestWhenInUseAuthorization()
+        }
+    }
 }
 
 extension MKCoordinateRegion {
@@ -31,13 +38,33 @@ extension MKCoordinateRegion {
     )
 }
 
+extension CLLocationCoordinate2D {
+    static let parking = CLLocationCoordinate2D(latitude: 42.354528, longitude: -71.068369)
+
+}
+
 struct ContentView: View {
-    
     @State private var searchResults: [MKMapItem] = []
     @State private var selectedResult: MKMapItem?
     @State private var visibleRegion: MKCoordinateRegion?
-    @State private var position: MapCameraPosition = .automatic
+    @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
     @State private var route: MKRoute?
+    
+    func search(for query: String) {
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = query
+        request.resultTypes = .pointOfInterest
+        request.region = visibleRegion ?? MKCoordinateRegion(
+            center: .parking,
+            span: MKCoordinateSpan(latitudeDelta: 0.0125, longitudeDelta: 0.0125))
+        
+        Task {
+            let search = MKLocalSearch(request: request)
+            let response = try? await search.start()
+            searchResults = response?.mapItems ?? []
+        }
+    }
+    
     
     var body: some View {
         Map(position: $position, selection: $selectedResult) {
@@ -57,6 +84,13 @@ struct ContentView: View {
                 Marker(item: result)
             }
             .annotationTitles(.hidden)
+                        
+            if let route {
+                MapPolyline(route)
+                    .stroke(.blue, lineWidth: 5)
+            }
+            
+            UserAnnotation()
         }
         .mapStyle(.standard(elevation: .realistic))
         .safeAreaInset(edge: .bottom) {
@@ -85,8 +119,14 @@ struct ContentView: View {
         }
         .onMapCameraChange { context in
             visibleRegion = context.region
+//            search(for: "restaurant")
         }
-        
+        .mapControls {
+            MapUserLocationButton()
+            MapPitchToggle()
+            MapCompass()
+            MapScaleView()
+        }
         
     }
     
@@ -96,7 +136,7 @@ struct ContentView: View {
         
         let request = MKDirections.Request()
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: .parking))
-        request.description = selectedResult
+        request.destination = selectedResult
         
         Task {
             let directions = MKDirections(request: request)
