@@ -1,5 +1,3 @@
-
-https://github.com/HalilIbrahimAndic/Traveller/assets/77022411/59c665b5-4576-485e-8fcb-ff4c0a6835fa
 **Traveller**
 
 - MapKit
@@ -8,4 +6,7 @@ https://github.com/HalilIbrahimAndic/Traveller/assets/77022411/59c665b5-4576-485
 - Navigation
 - Local Search
 
-Uploading Screen Recording 2024-06-30 at 13.33.29.mov…
+
+
+https://github.com/HalilIbrahimAndic/Traveller/assets/77022411/523f2382-037f-4553-bf54-e63052a3eefe
+
