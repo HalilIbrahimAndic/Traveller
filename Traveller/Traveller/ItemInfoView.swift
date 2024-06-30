@@ -11,8 +11,8 @@ import MapKit
 struct ItemInfoView: View {
     
     @State private var lookAroundScene: MKLookAroundScene?
-    @Binding var selectedResult: MKMapItem
-    @Binding var route: MKRoute
+    var selectedResult: MKMapItem
+    var route: MKRoute?
     
     func getLookAroundScene() {
         lookAroundScene = nil
@@ -32,12 +32,29 @@ struct ItemInfoView: View {
                         Text(travelTime)
                     }
                 }
+                .font(.caption)
+                .foregroundStyle(.white)
+                .padding(10)
             }
+            .overlay(alignment: .topTrailing, content: {
+                HStack {
+                    Text("\(selectedResult.name ?? "")")
+                    
+                    if let travelTime {
+                        Text(travelTime)
+                    }
+                }
+                .font(.caption)
+                .foregroundStyle(.white)
+                .padding(10)
+            })
             .onAppear {
-                
+                getLookAroundScene()
             }
             .onChange(of: selectedResult) {
-                self.getLookAroundScene()
+                getLookAroundScene()
+                print(selectedResult.url ?? "test url")
+                
             }
     }
     
